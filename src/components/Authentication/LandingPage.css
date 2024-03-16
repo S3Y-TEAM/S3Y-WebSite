@@ -1,0 +1,358 @@
+ /******* NavBar.css ***********/
+
+   .home{
+    margin: 0;
+    padding: 0;
+   }
+.navbar {
+  background-image: radial-gradient(white, transparent), linear-gradient(to right,#9BBEC8 , #abd6e2);
+
+}
+
+.navbar a {
+  color:#164863;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.navbar a:last-child {
+  margin-right: 0;
+}
+
+.navbar-link {
+  flex-grow: 1;
+   font-weight: bold;
+}
+.navbar-link.last{
+  margin-left:450px;
+}
+
+.navbar-link.sign{
+  background-color:linear-gradient(to right,#9BBEC8 , #abd6e2);
+  color: #164863;
+  border: 1px solid #164863;
+  border-radius: '50px';
+  width: 100px;
+  font-weight: bold;
+}
+
+.navbar-link.sign:hover{
+  color: #ffffff;
+  background-color: #164863;
+}
+
+
+
+
+
+/* **********landing************ */
+
+.landing {
+  background-image: radial-gradient(white, transparent), linear-gradient(to right,#9BBEC8 , #abd6e2);
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+.landing img{
+  margin-right: 60px;
+}
+
+.landing__content{
+  display: flex;
+  flex-direction: column;
+  margin-left:70px;
+
+}
+.landing__content h1{
+ color: #164863;
+ font-size: 48px;
+ text-align: left;
+}
+.landing__content h2{
+  color: #427D9D;
+  text-align: left;
+}
+
+.landing button{
+  position: relative;
+  width: 50%;
+  height: 45px;
+  background: transparent;
+  border: 1px solid #9BBEC8;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color:white;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 16px;
+ 
+
+}
+
+.landing button::before{
+  content: '';
+  position: absolute;
+  top:-100%;
+  left: 0;
+  width: 600px;
+  height: 100px;
+  background: linear-gradient(to bottom,#9BBEC8,#427D9D,#164863);
+  z-index: -1;
+  transition: 0.5s;
+
+}
+.landing button:hover::before{
+  top: 0;
+
+}
+
+
+/********** who we are ***********/
+.landing2 {
+  /* background-image: radial-gradient(white, transparent), linear-gradient(to right,#9BBEC8 , #abd6e2); */
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.landing2__content{
+  width:30%;
+}
+.landing2__content h5{
+  color:#164863;
+  font-size: 16px;
+ }
+.landing2__content h2{
+ color:black;
+ font-size: 32px;
+ text-align: left;
+}
+.landing2__content p{
+  color:gray;
+}
+
+  /******* services *********/
+.landing3 {
+  padding-bottom: 100px;
+  position: relative;
+}
+
+.bg{
+  background-color:#9BBEC8;;
+  width: 100%;
+  height:400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bg h2{
+  color: #164863;
+  text-align:left;
+  padding-top: 32px;
+  padding-left: 100px;
+}
+.bg p{
+  color: #ffffff;
+  text-align:left;
+  padding-top: 8px;
+  padding-left: 100px;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+  position: relative; 
+  z-index: 1;
+  width: 70%;
+  margin-left: 200px;
+  
+}
+
+.container .box {
+  box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  margin-top: 142px;
+}
+
+.container .box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 2px 15px rgb(0 0 0 / 20%);
+}
+.container .box img{
+  width: 250px;
+  height: 250px;
+}
+
+.container .box .content {
+  padding: 20px;
+  background-color: #164863;
+  position: relative; 
+  z-index: 1; 
+}
+.container .box .content h3 {
+  margin: 0;
+  color:white;
+}
+.container .box .content p {
+  line-height: 1.5;
+  color: lightgray;
+  text-align:left;
+}
+
+/* *********why s3y *******/
+.landing4{
+
+}
+.whys3y h2 {
+  color: black;
+}
+.whys3y p{
+  text-align: center;
+  font-size: 16px;
+  color:gray;
+  margin-top: 8px;
+}
+.whys3y2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.whys3y2 .contents{
+  text-align: left;
+  width:100%;
+
+}
+.whys3y2 .contents h3{
+  color: #263238;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.whys3y2 .contents p{
+ text-align: left;
+} 
+.whys3y2 .contents .h3-2{
+  background-color:#ddd;
+  border-radius: 10px;
+  padding:2px;
+  width: 45%;
+  margin: 8px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+}
+.whys3y2 .contents .h3-1,.h3-3{
+  margin-left: 200px;
+}
+
+
+
+/* start footer */
+.footer{
+  background-color: #164863;
+  padding-bottom: 100px;
+}
+.footer .fcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-right:60px;
+  
+}
+.info{
+padding-right: 70px;
+}
+
+.footer .info img{
+  width: 150px;
+  height: 150px;
+ 
+}
+.info .copyright{
+  color: #ddd;
+  text-align: left;
+  margin-left: 80px;
+}
+
+.footer .copyright > span {
+  color: #C3F8F6;
+}
+
+.footer .copyright div span {
+  color: gold;
+}
+
+.footer ul {
+  line-height:2;
+  list-style-type: none;
+  text-align: left;
+  color: lightgrey;
+  
+}
+
+
+
+.footer  h5{
+  color:#ddd;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.contact{
+  display: flex;
+  flex-direction: column;
+}
+.footer .contact p{
+  color: lightgray;
+  width: 270px;
+  text-align: left;
+}
+.footer .contact button {
+  background-color: #C3F8F6;
+  color: #164863;
+  height: 25px;
+  transition: 0.5s ease;
+  border-radius: 50px;
+  outline: none;
+  border-style: none;
+  margin-top: 16px;
+}
+
+.contact button:hover {
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.contact ul{
+  list-style-type: none;
+  gap: 3px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.contact ul .contacticon{
+  color: #ddd;
+width: 20px;
+height: 20px;
+margin-top: 16px;
+}
+/* end footer */
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+.ptype{
+    width: 50%;
+}
+
+
+.uploadproject{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 0 10px 0;
+    margin-top: 8px;
+    width: 50%;
+    
+}
+
+.uploadproject label{
+    color: gray;
+    margin-right: 60px;
+}
+
+.experiance h4{
+    color:#164863;
+}
+
+p{
+    text-align: left;
+    color: #164863;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.backnxtbtnsSkip{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.skipbtn{
+    color:#164863;
+    background-color: none;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #164863;
+    font-size: 16px;
+    width: 100px;
+    height:40px;
+    margin-top: 32px;
+    padding: 10px 20px;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+
+  .skipbtn:hover{
+    color: #ffffff;
+    background-color: #164863;
+
+  }
+

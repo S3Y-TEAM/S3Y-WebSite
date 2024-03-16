@@ -1,0 +1,22 @@
+.backnxtbtnsSkipC{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 185px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.uploadcer{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 0 10px 0;
+    margin-top: 16px;
+    width: 50%;
+    
+}
+
+.uploadcer label{
+    color: gray;
+    margin-right: 120px;
+}

@@ -1,0 +1,40 @@
+.loginsuccess{
+    background-color:#DCE4E8 ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+}
+
+.completed{
+    width:300px;
+    height:300px;
+}
+
+.loginsuccess h2{
+    color:#164863;
+    
+}
+
+.loginsuccess button{
+    color: white;
+    background-color: #164863;
+    outline: none;
+    border-radius: 10px;
+    border:none;
+    font-size: 16px;
+    width: 135px;
+    height:40px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.loginsuccess p{
+    color: #427D9D;
+    font-size: 12px;
+}
+
