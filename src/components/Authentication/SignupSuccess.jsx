@@ -3,10 +3,12 @@ import "./LoginSuccess.css";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import loadingAnimation from "../Animation - 1710012578540.json";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const SignupSuccess = () => {
   // const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { dispatch } = useAuthContext();
 
   const role = localStorage.getItem("role");
   const newToken3 = localStorage.getItem("jwtToken");
@@ -105,6 +107,24 @@ const SignupSuccess = () => {
       body: JSON.stringify(data),
     })
       .then((response) => {
+        if (response.ok) {
+          const data = response.json();
+          const authorizationHeader = response.headers.get("authorization");
+          const token = authorizationHeader
+            ? authorizationHeader.split(" ")[1]
+            : null;
+
+          const userObject = {
+            token: token,
+            userData: data.data,
+          };
+          localStorage.setItem("user", JSON.stringify(userObject));
+
+          dispatch({
+            type: "LOGIN",
+            payload: JSON.stringify(userObject),
+          });
+        }
         if (!response.ok) {
           return response.json().then((response) => {
             throw new Error(
