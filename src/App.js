@@ -16,6 +16,12 @@ import UploadPhone from'./components/Authentication/UploadPhone.jsx';
 import ForgetPassword from './components/Authentication/ForgetPassword.jsx';
 import ChangePassword from './components/Authentication/ChangePassword.jsx';
 
+import Home from './components/DeveloperDashboard/Home.jsx';
+import Dashboard from './components/DeveloperDashboard/Home.jsx';
+import Aboutus from './components/DeveloperDashboard/Aboutus.jsx';
+import Rateus from './components/DeveloperDashboard/Rateus.jsx';
+import Contactus from './components/DeveloperDashboard/Contactus.jsx';
+import Setting from './components/DeveloperDashboard/Setting.jsx';
 
 function App() {
   return (
@@ -36,6 +42,16 @@ function App() {
        <Route path="/UploadPhone" element={<UploadPhone/>} />
        <Route path="/ForgetPassword" element={<ForgetPassword />} />
        <Route path="/ChangePassword" element={<ChangePassword/>} />
+
+       <Route path='/Home' element={<Home/>} />
+       <Route path='/Dashboard' element={<Dashboard/>} />
+       <Route path='/Aboutus' element={<Aboutus/>} />
+       <Route path='/Rateus' element={<Rateus/>} />
+       <Route path='/Contactus' element={<Contactus/>} />
+       <Route path='/Setting' element={<Setting/>} />
+
+
+
 
 
        </Routes>
