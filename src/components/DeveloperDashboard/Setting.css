@@ -1,0 +1,100 @@
+.settinglist{
+    background-color: white;
+    border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    padding: 10px;
+}
+.settingcontent{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.listdetails{
+    background-color: white;
+    border-radius: 10px;
+    height: 480px;
+    width: 720px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.changelang img {
+    width:40%;
+    height: 40%;
+}
+.changelang ,.privecy,.terms  ,.remove{
+    color:#164863;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.privecy ,.terms p{
+    color: black;
+}
+
+.notificationsetting{
+    padding: 10px;
+}
+.notificationsetting p{
+    color: black;
+}
+
+.sone{
+width:100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+padding: 10px;
+}
+
+.faqs, .security{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+ .faqs .faqs1 ,.sec1{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+ }
+
+ .faqs .question{
+text-align: left;
+padding-left: 10px;
+ }
+
+ .faqs p{
+    color: black;
+ }
+
+ .faqs h4 ,.num ,.security h4 ,.security h5{
+    color: #164863;
+ }
+ .security p{ 
+    color:gray;
+ }
+
+ .security .secicon{
+    color: #164863;
+    padding-right: 20px;
+    padding-top: 10px;
+ }
+
+ .delete{
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+ .delete h3 , .red{
+    color: red;
+ }
+ .delete p{
+    padding: 20px 10px;
+ }

@@ -1,0 +1,41 @@
+.headerdata img{
+width: 45px;
+height: 45px;
+border-radius: 50%;
+}
+.headerdata{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    padding-right: 50px;
+    padding-top: 10px;
+    caret-color: transparent;
+}
+
+.headerdata table{
+    color: #164863;
+    font-size: 12px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+hr{
+    color: gray;
+    margin-top: 10px;
+}
+.notfication{
+    color: #164863;
+    width: 25px;
+    height: 25px;
+    padding-top: 10px;
+    padding-right: 30px;
+}
+.down{
+    color: #164863;
+    width: 25px;
+    height: 25px;
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+

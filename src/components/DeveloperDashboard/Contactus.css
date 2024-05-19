@@ -1,0 +1,94 @@
+.contactways{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
+.contactus h4 {
+    color: #164863;
+}
+.contactus .location ,.emailid ,.phone{
+display: flex;
+flex-direction: row;
+color: #164863 ;
+margin-top: 10px;
+text-align: left;
+}
+
+.contacticon{
+    width: 40px;
+    height: 40px;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+.userdata{
+    background-color: white;
+    border-radius: 10px;
+    height: 370px;
+    padding: 15px;
+    width: 500px;
+    margin-top: 20px;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+  }
+  
+  .userdataicon {
+    position: absolute;
+    top: 55%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #aaa; 
+  }
+  
+
+  .form-control {
+    width: 100%;
+    padding: 10px 10px 10px 40px; 
+    box-sizing: border-box; 
+  }
+  
+ .userdata .form-control::placeholder {
+    color: #ccc;
+  }
+
+  .form-control.message-input {
+    height: 100px; 
+  }
+
+  .dataimage{
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .map{
+    display: flex;
+    flex-direction: column;align-items: center;
+  }
+  .map p{
+    color: black;
+  }
+  .map img{
+    width: 450px;
+    height: 200px;
+    padding: 20px;
+    margin-left: 30px;
+  }
+
+ .social{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 10px;
+ }
+
+ .socialicon{
+    color: #164863;
+    width: 40px;
+    height: 40px;
+ }
+  
