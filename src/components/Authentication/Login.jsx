@@ -46,6 +46,8 @@ const Login = () => {
 
     if (Object.keys(formErrors).length === 0) {
       await login(formValues.email, formValues.password, selectedType);
+      localStorage.setItem("role", selectedType);
+
       // const storedUser = JSON.parse(localStorage.getItem("FullStore"));
       // if (storedUser) {
       //   const user = storedUser.find(u => u.Email === formValues.email && u.Password === formValues.password);
@@ -169,14 +171,14 @@ const Login = () => {
               <div className="usertypebtns">
                 <button
                   onClick={(e) => {
-                    handleTypeClick("Developer", e);
+                    handleTypeClick("dev", e);
                   }}
                   className="usretypeButton"
                   value="developer"
                   style={{
                     backgroundColor:
-                      selectedType === "Developer" ? "#164863" : "white",
-                    color: selectedType === "Developer" ? "white" : "#164863",
+                      selectedType === "dev" ? "#164863" : "white",
+                    color: selectedType === "dev" ? "white" : "#164863",
                   }}
                 >
                   Developer
@@ -184,15 +186,14 @@ const Login = () => {
 
                 <button
                   onClick={(e) => {
-                    handleTypeClick("skilledworker", e);
+                    handleTypeClick("worker", e);
                   }}
                   className="usretypeButton"
                   name="skilledworker"
                   style={{
                     backgroundColor:
-                      selectedType === "skilledworker" ? "#164863" : "white",
-                    color:
-                      selectedType === "skilledworker" ? "white" : "#164863",
+                      selectedType === "worker" ? "#164863" : "white",
+                    color: selectedType === "worker" ? "white" : "#164863",
                   }}
                 >
                   Skilled Worker
