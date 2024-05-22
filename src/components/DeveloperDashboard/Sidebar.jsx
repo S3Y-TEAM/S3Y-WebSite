@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThLarge,
@@ -19,9 +19,12 @@ import {
   faMoon,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import useLogout from "../../hooks/useLogout";
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const { logout } = useLogout();
+  //const nav = Navigate();
 
   const handleItemClick = (item) => {
     setActiveItem(item);
@@ -39,6 +42,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     console.log("User logged out");
+    logout();
   };
 
   return (
