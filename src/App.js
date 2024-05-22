@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route, Router, Navigate } from "react-router-dom";
 import LandingPage from "./components/Authentication/Landingpage.jsx";
 import Login from "./components/Authentication/Login.jsx";
 import SignUp from "./components/Authentication/SignUp.jsx";
@@ -17,33 +17,42 @@ import ForgetPassword from "./components/Authentication/ForgetPassword.jsx";
 import ChangePassword from "./components/Authentication/ChangePassword.jsx";
 
 import Home from "./components/DeveloperDashboard/Home.jsx";
-import Dashboard from "./components/DeveloperDashboard/Home.jsx";
-import Aboutus from "./components/DeveloperDashboard/Aboutus.jsx";
-import Rateus from "./components/DeveloperDashboard/Rateus.jsx";
-import Contactus from "./components/DeveloperDashboard/Contactus.jsx";
-import Setting from "./components/DeveloperDashboard/Setting.jsx";
+import { useAuthContext } from "./hooks/useAuthContext";
+import { ChatContextProvider } from "./context/chatContext.js";
 
 function App() {
+  const { user } = useAuthContext();
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/LoginSuccess" element={<LoginSuccess />} />
-        <Route path="/SignupSuccess" element={<SignupSuccess />} />
-        <Route path="/Experiance" element={<Experiance />} />
-        <Route path="/Uploadproject" element={<Uploadproject />} />
-        <Route path="/UploadCertificate" element={<UploadCertificate />} />
-        <Route path="/Links" element={<Links />} />
-        <Route path="/NationalData" element={<NationalData />} />
-        <Route path="/UploadEmail" element={<UploadEmail />} />
-        <Route path="/UploadPhone" element={<UploadPhone />} />
-        <Route path="/ForgetPassword" element={<ForgetPassword />} />
-        <Route path="/ChangePassword" element={<ChangePassword />} />
+      <ChatContextProvider user={user}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/Login"
+            element={!user ? <Login /> : <Navigate to="/Home" />}
+          />
+          <Route
+            path="/SignUp"
+            element={!user ? <SignUp /> : <Navigate to="/Home" />}
+          />
+          <Route path="/LoginSuccess" element={<LoginSuccess />} />
+          <Route path="/SignupSuccess" element={<SignupSuccess />} />
+          <Route path="/Experiance" element={<Experiance />} />
+          <Route path="/Uploadproject" element={<Uploadproject />} />
+          <Route path="/UploadCertificate" element={<UploadCertificate />} />
+          <Route path="/Links" element={<Links />} />
+          <Route path="/NationalData" element={<NationalData />} />
+          <Route path="/UploadEmail" element={<UploadEmail />} />
+          <Route path="/UploadPhone" element={<UploadPhone />} />
+          <Route path="/ForgetPassword" element={<ForgetPassword />} />
+          <Route path="/ChangePassword" element={<ChangePassword />} />
 
-        <Route path="/Home/*" element={<Home />} />
-      </Routes>
+          <Route
+            path="/Home/*"
+            element={user ? <Home /> : <Navigate to="/Login" />}
+          />
+        </Routes>
+      </ChatContextProvider>
     </div>
   );
 }
