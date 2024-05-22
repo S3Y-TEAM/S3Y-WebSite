@@ -1,30 +1,39 @@
 export const postRequest = async (url, body) => {
+  const role = localStorage.getItem("role");
   const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${JSON.parse(localStorage.getItem("user"))?.token}`,
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("user"))?.token
+      }`,
+      role: role,
     },
     body,
   });
   const data = await res.json();
 
   if (!res.ok) {
-    return { error: data.error };
+    return { error: data.message };
   }
-  return data;
+  return data.data;
 };
 
 export const getRequest = async (url) => {
+  const role = localStorage.getItem("role");
+
   const res = await fetch(url, {
+    //mode: "no-cors",
     headers: {
-      Authorization: `Token ${JSON.parse(localStorage.getItem("user")).token}`,
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("user"))?.token
+      }`,
+      role: role,
     },
   });
   const data = await res.json();
-
   if (!res.ok) {
-    return { error: data.error };
+    return { error: data.message };
   }
-  return data;
+  return data.data;
 };
