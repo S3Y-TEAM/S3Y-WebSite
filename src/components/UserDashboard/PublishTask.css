@@ -1,0 +1,87 @@
+.publishtask{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+    height: 480px;
+}
+
+.publishtask h4{
+    color: #164863;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .formggroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formggroup label {
+    margin-bottom: 5px;
+    color: #164863;
+    text-align: left;
+  }
+  
+  .formggroup input,
+  .formggroup select,
+  .formggroup textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+
+  .row1, .row2 ,.row3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+
+  }
+
+  .row2 .select {
+    width: 520px;
+  }
+  .row1 .select1{
+    width: 504px;
+  }
+  .row3 .select3{
+    width: 504px;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #164863;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 200px;
+    font-size: 16px;
+  }
+
+  
+  .file-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .success-message {
+    background-color: #4CAF50; /* لون الخلفية الأخضر */
+    color: white; /* لون الخط */
+    text-align: center; /* محاذاة النص في الوسط */
+    padding: 10px; /* تباعد النص عن الحواف */
+    border-radius: 8px; /* زوايا مستديرة */
+    margin-bottom: 20px; /* التباعد بين الرسالة والنموذج */
+  }

@@ -1,0 +1,72 @@
+.addproblem{
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 15px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.backbutton{
+    position: absolute;
+    color:#164863;
+    background-color: none;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #164863;
+    font-size: 16px;
+    width: 140px;
+    height:40px;
+    margin-top: 20px;
+    cursor: pointer;
+    right: 30px; 
+   
+  }
+
+  .backbutton:hover{
+    color: #ffffff;
+    background-color: #164863;
+  }
+
+  .addproblem h3 {
+    color: #164863;
+    margin-top: 80px;
+  }
+
+  .dev img, .worker img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .chooseDW{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .dev ,.worker{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+
+
+  .dev2 button, .worker2 button {
+    padding: 10px 20px;
+    background-color:white;
+    color: #164863;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 251px;
+    height: 50px;
+    font-size: 16px;
+  }
+  
+  .dev2 button.selected, .worker2 button.selected {
+    background-color: #164863; 
+    color:white; 
+  }
+

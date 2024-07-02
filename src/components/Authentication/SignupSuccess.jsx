@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import loadingAnimation from "../Animation - 1710012578540.json";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useNavigate } from 'react-router-dom';
 
 const SignupSuccess = () => {
+  const navigate = useNavigate();
   // const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
   const { dispatch } = useAuthContext();
@@ -162,6 +164,15 @@ const SignupSuccess = () => {
     },
   };
 
+
+  const handleLetsStartClick = () => {
+    if (role === 'emp') {
+      navigate('/UserHome/UserDashboard');
+    } else if (role === 'dev') {
+      navigate('/DeveloperHome');
+    }
+  };
+
   return (
     <div>
       {loading ? (
@@ -177,7 +188,7 @@ const SignupSuccess = () => {
             />
             <h2>Sucessfully signed-Up</h2>
             <p>Your account will be activated within 24 hours</p>
-            <button className="Letsstartbtn">
+            <button className="Letsstartbtn" onClick={handleLetsStartClick}>
               Let's Start <img src={require("../images/Right Arrow.png")} />
             </button>
           </div>

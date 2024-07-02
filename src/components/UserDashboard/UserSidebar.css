@@ -1,0 +1,170 @@
+
+.sidebar{
+    background-color: #164863;
+    height: 100vh;
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    caret-color: transparent;
+}
+.sidebar img{
+    width: 124px;
+    height: 44px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sidebar-divider{
+    width: 90%;
+}
+
+.sidebar ul{
+    list-style-type: none;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+.sidebar li{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    align-self: flex-start;
+}
+
+.sidebar span{
+    color: #9BBEC8;
+    margin-top: 10px;
+}
+
+.dashboardicon{
+    color: #9BBEC8;
+    margin-right: 8px;
+    padding-left: 8px;
+}
+
+.nav-item{
+    padding-left: 8px;
+    padding-right: 10px;
+}
+.nav-item :hover{
+background-color:#9BBEC8;
+color: #164863;
+}
+.sidebar li:hover .dashboardicon {
+    color: #164863;
+  }
+
+
+  .nav-item.active {
+    background-color: #9BBEC8;
+    color: #164863; 
+  }
+  .nav-item.active .dashboardicon {
+    color: #164863;
+}
+  .nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item.active .nav-link {
+  color: #164863;
+}
+
+
+body {
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  body.dark {
+    background-color: black;
+    color: white;
+  }
+ 
+  /* .Home-container .dark{
+    background-color: black;
+    color: white;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  } */
+
+
+    .containsunmoon {
+        background-color: #9BBEC8;
+        width: 60px;
+        height: 25px; 
+        border-radius: 20px; 
+        padding: 1px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        margin-top: 5px;
+        position: relative; 
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-right: 133px;
+    }
+    
+    .sun, .moon {
+        font-size: 15px;
+        color: #fff;
+        padding-top: 3px;
+    }
+    .sun{
+        color: #f39c12;
+    }
+    .moon{
+        color: gray;
+    }
+    
+    .togle {
+        width:25px; 
+        height: 25px; 
+        top: 4px;
+        border-radius: 50%; 
+        transition: transform 0.3s ease; 
+    }
+    
+    .togle:hover {
+        background-color: #DDF2FD
+    }
+    
+    .togle.active {
+        background-color: #164863; 
+    }
+    
+    .togle2 {
+        width: 25px; 
+        height: 25px; 
+        top: 4px;
+        border-radius: 50%; 
+        transition: transform 0.3s ease;
+    }
+    
+    .togle2:hover {
+        background-color: #DDF2FD; 
+    }
+    
+    .togle2.active {
+        background-color: #164863;
+    }
+
+    .logout{
+        background-color: #ddd;
+        color: darkred;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        width: 200px;
+        height:40px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    .logouticon{
+        margin-right: 5px;
+    }
+    
+    .logout:hover{
+        background-color: rgb(255, 202, 202);
+    }
