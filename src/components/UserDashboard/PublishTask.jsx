@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PublishTask.css";
 import { useRef } from "react";
 import { FaUpload } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { postRequestWithFiles } from "../../utils/services";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getRequest, postRequestWithFiles } from "../../utils/services";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 function PublishTask() {
@@ -18,7 +18,21 @@ function PublishTask() {
   const fileInputRef = useRef(null);
   const [errors, setErrors] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [categories, setCategories] = useState(null);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  //console.log("state", state);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categories = await getRequest(
+        `http://localhost:8000/api/v1/tasks/categories/${state.type}`
+      );
+      //console.log("cats", categories.categories);
+      setCategories(categories.categories);
+    };
+    getCategories();
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -131,9 +145,15 @@ function PublishTask() {
                 value={job}
                 onChange={(e) => setJob(e.target.value)}
               >
-                <option value="web">web</option>
+                {categories?.length > 0 &&
+                  categories?.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
+                {/* <option value="web">web</option>
                 <option value="android">android</option>
-                <option value="ai">ai</option>
+                <option value="ai">ai</option> */}
               </select>
               {errors.job && <span className="error">{errors.job}</span>}
             </div>
