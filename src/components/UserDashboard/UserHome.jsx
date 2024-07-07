@@ -21,6 +21,7 @@ const UserHome = () => {
       <div className="contentt">
         <Routes>
           <Route path="/" element={<UserDashboard />} />
+          <Route path="/UserDashboard" element={<UserDashboard />} />
           <Route path="/AddProblem" element={<AddProblem />} />
           <Route path="/PublishTask" element={<PublishTask />} />
           <Route path="/Tasks" element={<ListTasks />} />
