@@ -6,7 +6,9 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 
 function MessagesList(props) {
   const { message, online, index, recipient } = props;
-  const { user } = useAuthContext();
+  //const { user } = useAuthContext();
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const isYou = message?.senderId == user?.userData?.id;
   return (
     <Stack

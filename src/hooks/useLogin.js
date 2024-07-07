@@ -13,7 +13,7 @@ const useLogin = () => {
       setError(null);
       setIsLoading(true);
 
-      let res = await fetch("https://s3y.onrender.com/api/v1/signin/", {
+      let res = await fetch("http://localhost:8000/api/v1/signin/", {
         method: "POST",
         headers: { "Content-Type": "application/json", role: role },
         body: JSON.stringify({ email, password }),

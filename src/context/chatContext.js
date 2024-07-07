@@ -15,9 +15,11 @@ export const ChatContextProvider = ({ children, user }) => {
   const [newMessage, setNewMessage] = useState(null);
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const userId = JSON.parse(localStorage.getItem("user"))?.userData?.id;
+  //console.log("id", userId);
 
   useEffect(() => {
-    const socket = io("https://s3y.onrender.com");
+    const socket = io("http://localhost:8000");
     setSocket(socket);
     return () => {
       socket.disconnect();
@@ -27,7 +29,7 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     if (!socket) return;
     socket.emit("addNewUser", {
-      userId: user?.userData?.id,
+      userId: userId,
     });
     socket.on("getOnlineUsers", (res) => setOnlineUsers(res));
     return () => socket.off("getOnlineUsers");
@@ -36,9 +38,7 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     if (!socket) return;
 
-    const recipientId = selectedChat?.members.find(
-      (id) => id != user?.userData?.id
-    );
+    const recipientId = selectedChat?.members.find((id) => id != userId);
     socket.emit("sendMessage", { ...newMessage, recipientId });
   }, [newMessage]);
 
@@ -53,13 +53,13 @@ export const ChatContextProvider = ({ children, user }) => {
 
   useEffect(() => {
     const getUserChats = async () => {
-      console.log(user?.userData?.id);
-      if (user?.userData?.id) {
+      console.log(userId);
+      if (userId) {
         console.log("user is here");
         setIsChatsLoading(true);
         setChatsError(null);
         const res = await getRequest(
-          `https://s3y.onrender.com/api/v1/chats/${user?.userData.id}`
+          `http://localhost:8000/api/v1/chats/${userId}`
         );
 
         console.log("data", res);
@@ -85,7 +85,7 @@ export const ChatContextProvider = ({ children, user }) => {
         setIsMessagesLoading(true);
         setMessagesError(null);
         const res = await getRequest(
-          `https://s3y.onrender.com/api/v1/messages/${selectedChat?._id}`
+          `http://localhost:8000/api/v1/messages/${selectedChat?._id}`
         );
         setIsMessagesLoading(false);
         if (res.error) setMessagesError(res.error);
@@ -124,7 +124,7 @@ export const ChatContextProvider = ({ children, user }) => {
   const sendNewMessage = useCallback(async (text, sender, currentChatId) => {
     if (text) {
       const res = await postRequest(
-        `https://s3y.onrender.com/api/v1/messages`,
+        `http://localhost:8000/api/v1/messages`,
         JSON.stringify({
           chatId: currentChatId,
           senderId: sender.userData.id,
