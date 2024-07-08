@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ListTasks.css";
 import "./UserDashboard.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import EditIcon from "@mui/icons-material/Edit";
 import { styled } from "@mui/system";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { getRequest } from "../../utils/services";
+import AlertDialog from "./ConfirmTaskDone";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const CustomButtonGroup = styled(ButtonGroup)(({ theme }) => ({
   border: "1px solid #164863",
@@ -18,6 +23,16 @@ function ListTasks() {
   const tabsLabels = ["All", "Not Started", "In progress", "Done", "Paid"];
   const [selectedButton, setSelectedButton] = useState("");
   const [tasks, setTasks] = useState(null);
+  const [open, setOpen] = React.useState(false);
+  const nav = useNavigate();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleButtonClick = (buttonName) => {
     if (buttonName === "All") {
@@ -26,6 +41,14 @@ function ListTasks() {
       setSelectedButton(buttonName);
     }
     // يمكنك هنا إضافة كود الفلترة بناءً على الزر النشط
+  };
+
+  const handleConfirm = async (taskId) => {
+    const response = await getRequest(
+      `http://localhost:8000/api/v1/tasks/${taskId}/markTaskAsDone`
+    );
+    handleClose();
+    if (response?.task) setSelectedButton("Done");
   };
 
   useEffect(() => {
@@ -67,10 +90,13 @@ function ListTasks() {
             if (status === "In progress") status = "in-progress";
             else if (status === "Not Started") status = "not-started";
             return (
-              <div className={`task ${status}`}>
-                <div className="task-img">
+              <div
+                className={`task ${status}`}
+                onClick={() => nav(`/UserHome/Task/${task?.id}/applications`)}
+              >
+                {/* <div className="task-img">
                   <img src={require("../images/hagar.jpg")} alt="taskImg" />
-                </div>
+                </div> */}
                 <div className="task-info">
                   <p className="task-title">{task?.Title}</p>
                   <p className="task-title">
@@ -83,78 +109,31 @@ function ListTasks() {
                     Category: <span>{task?.category?.name}</span>
                   </p>
                 </div>
+                {task.status === "In progress" && (
+                  <div className="task-btns">
+                    <button className="edit" onClick={handleClickOpen}>
+                      <EditIcon sx={{ color: "gray" }} />
+                    </button>
+                    <AlertDialog
+                      open={open}
+                      handleConfirm={() => handleConfirm(task?.id)}
+                      handleClose={handleClose}
+                    />
+                  </div>
+                )}
+                <button
+                  className="read-more"
+                  onClick={() => nav(`/UserHome/Task/${task?.id}/applications`)}
+                >
+                  {/* <ReadMoreIcon /> */}
+                  <ArrowForwardIcon />
+                </button>
               </div>
             );
           })
         ) : (
           <div>No tasks to show</div>
         )}
-        {/* <div className="task in">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>
-        <div className="task">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>
-        <div className="task">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>
-        <div className="task">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>
-        <div className="task">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>
-        <div className="task">
-          <div className="task-img">
-            <img src={require("../images/hagar.jpg")} alt="taskImg" />
-          </div>
-          <div className="task-info">
-            <p className="task-title">Task Title front end</p>
-            <p className="task-title">Status: vjlh</p>
-            <p className="task-title">Budget: ljvh</p>
-            <p className="task-title">Category: jhhl</p>
-          </div>
-        </div>*/}
       </div>
     </div>
   );
