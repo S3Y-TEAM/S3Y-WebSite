@@ -12,6 +12,7 @@ import AddProblem from "./AddProblem";
 import PublishTask from "./PublishTask";
 import ListTasks from "./ListTasks";
 import MyMessages from "../Chat/MyMessages";
+import ListTaskApplications from "./ListTaskApplications";
 
 const UserHome = () => {
   return (
@@ -25,6 +26,10 @@ const UserHome = () => {
           <Route path="/AddProblem" element={<AddProblem />} />
           <Route path="/PublishTask" element={<PublishTask />} />
           <Route path="/Tasks" element={<ListTasks />} />
+          <Route
+            path="/Task/:taskId/applications"
+            element={<ListTaskApplications />}
+          />
           <Route path="/Chat" element={<MyMessages />} />
 
           {/* <Route path="/Contactus" element={<Contactus/>} />
