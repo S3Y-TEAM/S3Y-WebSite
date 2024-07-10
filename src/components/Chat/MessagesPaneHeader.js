@@ -12,7 +12,7 @@ import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import { toggleMessagesPane } from "../../utils/chatHandlers";
 
 export default function MessagesPaneHeader(props) {
-  const { username, online, src } = props;
+  const { username, online, src, Fname } = props;
   return (
     <Stack
       direction="row"
@@ -71,7 +71,7 @@ export default function MessagesPaneHeader(props) {
           >
             {username}
           </Typography>
-          <Typography level="body-sm">{username}</Typography>
+          <Typography level="body-sm">{Fname}</Typography>
         </div>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center">
