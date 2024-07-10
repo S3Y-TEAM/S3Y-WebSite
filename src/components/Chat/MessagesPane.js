@@ -11,12 +11,12 @@ import MessagesList from "./MessagesList";
 
 export default function MessagesPane(props) {
   const { selectedChat } = React.useContext(ChatContext);
-  const { user } = useAuthContext();
+  const user = JSON.parse(localStorage.getItem("user"));
   let { recipient, recipientId } = useFetchRecipient(selectedChat, user);
   const { messages, sendNewMessage, onlineUsers } =
     React.useContext(ChatContext);
   const [textAreaValue, setTextAreaValue] = React.useState("");
-  const online = onlineUsers?.some((user) => user.userId == recipientId);
+  const online = onlineUsers?.some((user) => user?.userId == recipientId);
 
   if (!recipient)
     return (
@@ -43,6 +43,7 @@ export default function MessagesPane(props) {
     >
       <MessagesPaneHeader
         username={recipient?.user_name}
+        Fname={recipient?.Fname}
         src={null}
         online={online}
       />

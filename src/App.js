@@ -25,7 +25,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import { ChatContextProvider } from "./context/chatContext.js";
 
 function App() {
-  const { user } = useAuthContext();
+  const user = JSON.parse(localStorage.getItem("user"));
   const role = localStorage.getItem("role");
   return (
     <div className="App">
