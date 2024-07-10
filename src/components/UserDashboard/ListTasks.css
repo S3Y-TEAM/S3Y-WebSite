@@ -78,6 +78,17 @@
   padding: 5px;
   z-index: 999;
 }
+.chat {
+  position: absolute;
+  top: 52px;
+  right: 15px;
+  outline: none;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 999;
+}
 
 .read-more {
   position: absolute;
@@ -93,7 +104,8 @@
 }
 
 .edit:hover,
-.read-more:hover {
+.read-more:hover,
+.chat:hover {
   background-color: #eee;
   border-radius: 50%;
 }

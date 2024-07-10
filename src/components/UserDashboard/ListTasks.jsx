@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListTasks.css";
 import "./UserDashboard.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import EditIcon from "@mui/icons-material/Edit";
+import ChatIcon from "@mui/icons-material/Chat";
 import { styled } from "@mui/system";
-import Rating from "@mui/material/Rating";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { getRequest } from "../../utils/services";
 import AlertDialog from "./ConfirmTaskDone";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { ChatContext } from "../../context/chatContext";
+import { useFetchRecipient } from "../../hooks/useFetchRecipient";
 
 const CustomButtonGroup = styled(ButtonGroup)(({ theme }) => ({
   border: "1px solid #164863",
@@ -25,6 +24,10 @@ function ListTasks() {
   const [tasks, setTasks] = useState(null);
   const [open, setOpen] = React.useState(false);
   const nav = useNavigate();
+  const { createChat, chatError, selectedChat } = useContext(ChatContext);
+  const [recipient, setRecipient] = useState(null);
+
+  const userId = JSON.parse(localStorage.getItem("user"))?.userData?.id;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -44,19 +47,34 @@ function ListTasks() {
   };
 
   const handleConfirm = async (taskId) => {
-    const response = await getRequest(
-      `http://localhost:8000/api/v1/tasks/${taskId}/markTaskAsDone`
-    );
+    const response = await getRequest(`api/v1/tasks/${taskId}/markTaskAsDone`);
     handleClose();
     if (response?.task) setSelectedButton("Done");
   };
 
+  const getAcceptedEmployee = (task) => {
+    const employeeId = task?.applicants?.find(
+      (app) => app?.accepted === true
+    )?.employeeId;
+    console.log("employee", employeeId);
+    return employeeId;
+  };
+
+  const handleChat = async (task) => {
+    const recipientId = getAcceptedEmployee(task);
+    setRecipient(recipientId);
+    await createChat(userId, recipientId);
+    if (!chatError) {
+      nav(`/UserHome/Chat/`);
+    } else console.log(chatError);
+  };
+
   useEffect(() => {
     const getTasks = async () => {
+      console.log("userId t", userId);
       const tasks = await getRequest(
-        `http://localhost:8000/api/v1/employer/101/tasks?status=${selectedButton}`
+        `api/v1/employer/${userId}/tasks?status=${selectedButton}`
       );
-      console.log("tasks", tasks.tasks);
       setTasks(tasks.tasks);
     };
     getTasks();
@@ -90,13 +108,7 @@ function ListTasks() {
             if (status === "In progress") status = "in-progress";
             else if (status === "Not Started") status = "not-started";
             return (
-              <div
-                className={`task ${status}`}
-                onClick={() => nav(`/UserHome/Task/${task?.id}/applications`)}
-              >
-                {/* <div className="task-img">
-                  <img src={require("../images/hagar.jpg")} alt="taskImg" />
-                </div> */}
+              <div className={`task ${status}`}>
                 <div className="task-info">
                   <p className="task-title">{task?.Title}</p>
                   <p className="task-title">
@@ -119,13 +131,15 @@ function ListTasks() {
                       handleConfirm={() => handleConfirm(task?.id)}
                       handleClose={handleClose}
                     />
+                    <button className="chat" onClick={() => handleChat(task)}>
+                      <ChatIcon sx={{ color: "gray" }} />
+                    </button>
                   </div>
                 )}
                 <button
                   className="read-more"
                   onClick={() => nav(`/UserHome/Task/${task?.id}/applications`)}
                 >
-                  {/* <ReadMoreIcon /> */}
                   <ArrowForwardIcon />
                 </button>
               </div>
