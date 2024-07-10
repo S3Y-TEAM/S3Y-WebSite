@@ -24,7 +24,7 @@ const AddProblem = () => {
       <h3>Choose.. Which one will help you with your problem ?</h3>
       <div className="chooseDW">
         <div className="dev">
-          <img src={require("../images/tech.png")} />
+          <img src={require("../images/tech.png")} alt="problemImg" />
           <div className="dev2">
             <button
               className={selected === "Developer" ? "selected" : ""}
@@ -35,7 +35,7 @@ const AddProblem = () => {
           </div>
         </div>
         <div className="worker">
-          <img src={require("../images/worker 2.png")} />
+          <img src={require("../images/worker 2.png")} alt="problemImg" />
           <div className="worker2">
             <button
               className={selected === "Worker" ? "selected" : ""}
