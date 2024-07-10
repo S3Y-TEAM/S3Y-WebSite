@@ -9,6 +9,9 @@ import Contactus from "./Contactus";
 import Dashboard from "./Dashboard";
 import Setting from "./Setting";
 import MyMessages from "../Chat/MyMessages";
+import ListTasks from "./ListTasks";
+import ListAppliedJobs from "./ListAppliedJobs";
+import TaskDetails from "./TaskDetails";
 
 const Home = () => {
   return (
@@ -23,6 +26,9 @@ const Home = () => {
           <Route path="/Rateus" element={<Rateus />} />
           <Route path="/Setting" element={<Setting />} />
           <Route path="/Chat" element={<MyMessages />} />
+          <Route path="/Tasks" element={<ListTasks />} />
+          <Route path="/AppliedJobs" element={<ListAppliedJobs />} />
+          <Route path="/Task/:taskId" element={<TaskDetails />} />
         </Routes>
       </div>
     </div>

@@ -107,14 +107,12 @@ const Sidebar = () => {
           </Link>
         </li>
         <li
-          className={`nav-item ${
-            activeItem === "ApplayingJobs" ? "active" : ""
-          }`}
+          className={`nav-item ${activeItem === "AppliedJobs" ? "active" : ""}`}
         >
           <Link
             className="nav-link"
-            to="/Home/ApplayingJobs"
-            onClick={() => handleItemClick("ApplayingJobs")}
+            to="/Home/AppliedJobs"
+            onClick={() => handleItemClick("AppliedJobs")}
           >
             <span>
               <FontAwesomeIcon icon={faBriefcase} className="dashboardicon" />
