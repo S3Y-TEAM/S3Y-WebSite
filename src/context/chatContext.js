@@ -53,16 +53,10 @@ export const ChatContextProvider = ({ children, user }) => {
 
   useEffect(() => {
     const getUserChats = async () => {
-      console.log(userId);
       if (userId) {
-        console.log("user is here");
         setIsChatsLoading(true);
         setChatsError(null);
-        const res = await getRequest(
-          `http://localhost:8000/api/v1/chats/${userId}`
-        );
-
-        console.log("data", res);
+        const res = await getRequest(`api/v1/chats/${userId}`);
         setIsChatsLoading(false);
         if (res.error) setChatsError(res.error);
         const sortedChats = res?.chats?.sort(
@@ -73,7 +67,6 @@ export const ChatContextProvider = ({ children, user }) => {
           setSelectedChat(sortedChats[0]);
         }
         console.log("chats", sortedChats);
-        console.log("selected chats", selectedChat);
       }
     };
     getUserChats();
@@ -84,9 +77,7 @@ export const ChatContextProvider = ({ children, user }) => {
       if (user) {
         setIsMessagesLoading(true);
         setMessagesError(null);
-        const res = await getRequest(
-          `http://localhost:8000/api/v1/messages/${selectedChat?._id}`
-        );
+        const res = await getRequest(`api/v1/messages/${selectedChat?._id}`);
         setIsMessagesLoading(false);
         if (res.error) setMessagesError(res.error);
         setMessages(res.messages);
@@ -110,21 +101,21 @@ export const ChatContextProvider = ({ children, user }) => {
     });
   }, [newMessage]);
 
-  const createChat = useCallback(async (firstId, secondId) => {
+  const createChat = useCallback(async (employerId, employeeId) => {
     const res = await postRequest(
-      `/api/chats`,
-      JSON.stringify({ firstId, secondId })
+      `api/v1/chats`,
+      JSON.stringify({ employerId, employeeId })
     );
     if (res.error) setChatsError(res.error);
-    setChats((prev) => [...prev, res]);
-    setSelectedChat(res);
+    setChats((prev) => [...prev, res.chat]);
+    setSelectedChat(res.chat);
     console.log("created private chat: ", res);
   }, []);
 
   const sendNewMessage = useCallback(async (text, sender, currentChatId) => {
     if (text) {
       const res = await postRequest(
-        `http://localhost:8000/api/v1/messages`,
+        `api/v1/messages`,
         JSON.stringify({
           chatId: currentChatId,
           senderId: sender.userData.id,

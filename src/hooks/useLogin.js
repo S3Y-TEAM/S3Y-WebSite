@@ -13,11 +13,14 @@ const useLogin = () => {
       setError(null);
       setIsLoading(true);
 
-      let res = await fetch("http://localhost:8000/api/v1/signin/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", role: role },
-        body: JSON.stringify({ email, password }),
-      });
+      let res = await fetch(
+        "https://s3-y-api-s3y-service.vercel.app/api/v1/signin/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", role: role },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await res.json();
       console.log("data", data);
       if (res.ok) {

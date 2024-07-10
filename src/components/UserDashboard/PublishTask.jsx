@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { FaUpload } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getRequest, postRequestWithFiles } from "../../utils/services";
-import { useAuthContext } from "../../hooks/useAuthContext";
 
 function PublishTask() {
   const [title, setTitle] = useState("");
@@ -12,7 +11,7 @@ function PublishTask() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [budget, setBudget] = useState("");
-  const [attachment, setAttachment] = useState(null);
+  const [attachment, setAttachment] = useState("");
   const [note, setNote] = useState("");
   const [deadline, setDeadline] = useState("");
   const fileInputRef = useRef(null);
@@ -21,14 +20,12 @@ function PublishTask() {
   const [categories, setCategories] = useState(null);
   const navigate = useNavigate();
   const { state } = useLocation();
-  //console.log("state", state);
 
   useEffect(() => {
     const getCategories = async () => {
       const categories = await getRequest(
-        `http://localhost:8000/api/v1/tasks/categories/${state.type}`
+        `api/v1/tasks/categories/${state.type}`
       );
-      //console.log("cats", categories.categories);
       setCategories(categories.categories);
     };
     getCategories();
@@ -69,11 +66,9 @@ function PublishTask() {
     );
     console.log(...formData);
 
-    const task = await postRequestWithFiles(
-      "http://localhost:8000/api/v1/tasks",
-      formData
-    );
+    const task = await postRequestWithFiles("api/v1/tasks", formData);
     console.log("task from back", task);
+    if (task?.newTask) setSubmitted(true);
   };
 
   const handleIconClick = () => {
@@ -151,9 +146,6 @@ function PublishTask() {
                       {cat.name}
                     </option>
                   ))}
-                {/* <option value="web">web</option>
-                <option value="android">android</option>
-                <option value="ai">ai</option> */}
               </select>
               {errors.job && <span className="error">{errors.job}</span>}
             </div>

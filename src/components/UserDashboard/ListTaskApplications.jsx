@@ -35,7 +35,7 @@ function ListTaskApplications() {
 
   const handleAccept = async (applicationId) => {
     const response = await getRequest(
-      `http://localhost:8000/api/v1/tasks/applications/${applicationId}/accept/`
+      `api/v1/tasks/applications/${applicationId}/accept/`
     );
     if (response?.task) {
       nav("/UserHome/Tasks");
@@ -45,9 +45,8 @@ function ListTaskApplications() {
   useEffect(() => {
     const getTasksApplications = async () => {
       const applications = await getRequest(
-        `http://localhost:8000/api/v1/tasks/${params?.taskId}/applications`
+        `api/v1/tasks/${params?.taskId}/applications`
       );
-      console.log("applications", applications?.applications);
       setApplications(applications?.applications);
     };
     getTasksApplications();
@@ -76,11 +75,7 @@ function ListTaskApplications() {
                 <h4 className="app-title">Cover letter</h4>
                 <div className="cover">
                   <p className="app-cover">
-                    {application?.coverLetter || "No cover letter"} Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Natus quasi cum
-                    in ipsam blanditiis eveniet velit, ipsum odio unde molestiae
-                    explicabo, minima officiis necessitatibus quisquam placeat
-                    sint culpa suscipit qui?
+                    {application?.coverLetter || "No cover letter"}
                   </p>
                   <span onClick={handleClickOpen}>See more</span>
                 </div>

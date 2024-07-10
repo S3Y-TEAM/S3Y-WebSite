@@ -5,31 +5,27 @@ import ListItem from "@mui/joy/ListItem";
 import ListItemButton from "@mui/joy/ListItemButton";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
-import CircleIcon from "@mui/icons-material/Circle";
 import AvatarWithStatus from "./AvatarWithStatus";
 import { toggleMessagesPane } from "../../utils/chatHandlers";
 import { useFetchRecipient } from "../../hooks/useFetchRecipient";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useState, useEffect } from "react";
 import { getRequest } from "../../utils/services";
 import { ChatContext } from "../../context/chatContext";
 import moment from "moment";
 
 export default function ChatListItem(props) {
-  let { chat, type, selectedChatId, setSelectedChat } = props;
-  const { createChat, onlineUsers, newMessage, chats, messages } =
+  let { chat, selectedChatId, setSelectedChat } = props;
+  const { onlineUsers, newMessage, chats, messages } =
     React.useContext(ChatContext);
   const [currentMessages, setCurrentMessages] = useState([]);
-  const { user } = useAuthContext();
+  const user = JSON.parse(localStorage.getItem("user"));
   let { recipient, recipientId } = useFetchRecipient(chat, user);
 
   const selected = selectedChatId === chat._id;
 
   useEffect(() => {
     const getChatMessages = async () => {
-      const res = await getRequest(
-        `https://s3y.onrender.com/api/v1/messages/${chat?._id}`
-      );
+      const res = await getRequest(`api/v1/messages/${chat?._id}`);
       if (res.error) console.log(res.error);
       setCurrentMessages(res.messages);
       // console.log();
@@ -43,9 +39,7 @@ export default function ChatListItem(props) {
         <ListItemButton
           onClick={() => {
             toggleMessagesPane();
-            if (type === "potential") {
-              createChat(user.userId, chat.id);
-            } else setSelectedChat(chat);
+            setSelectedChat(chat);
           }}
           selected={selected}
           sx={{
